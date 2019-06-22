@@ -1,5 +1,3 @@
-//https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&category=0&problem=1558&mosmsg=Submission+received+with+ID+23409272
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -16,11 +14,15 @@ long long int  palindrome(int i,int j){
     if(ret!=-1){return ret;}
     ret=0;
 
-    ret+=palindrome(i+1,j)+palindrome(i,j-1);
-    if(s[i]==s[j])
+    ret+=palindrome(i+1,j)+palindrome(i,j-1); 
+    if(s[i]==s[j]) // if the current string is palindrome increase 1 to count it
         ret+=1;
-    else
+    else   
         ret-=palindrome(i+1,j-1);
+    // else we will remove the palindrome(i+1,j-1) because it's duplicate appear more than once
+    // we didn't remove it when s[i]==s[j] because we wiil calculate them again except this time while adding
+    // both letters s[i] and s[j]
+
 
     return ret;
 
